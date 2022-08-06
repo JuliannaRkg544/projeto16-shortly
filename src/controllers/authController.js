@@ -31,12 +31,11 @@ export async function signin(req,res){
     if (verifyUser.rowCount==0){
         return res.status(401).send("email not found")
     }
-    console.log(verifyUser.rows[0])
-   if( bcrypt.compareSync(user.password, verifyUser.rows[0].password)){
     const token = uuid();
-    db.query(`INSERT INTO sessions ("userId",token) VALUES ($1, $2)`, [verifyUser.rows[0].id,token])
+   if( bcrypt.compareSync(user.password, verifyUser.rows[0].password)){
+    await db.query(`INSERT INTO sessions ("userId",token) VALUES ($1, $2)`, [verifyUser.rows[0].id,token])
    }
-   res.sendStatus(200)
+   res.status(200).send(token)
     
   } catch (error) {
     console.log(error)
