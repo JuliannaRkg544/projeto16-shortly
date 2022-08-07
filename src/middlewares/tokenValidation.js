@@ -5,9 +5,7 @@ export function tokenValidation(req, res, next){
     if(!token){
         return res.sendStatus(401)
     } 
-    console.log(res.locals)
     res.locals.token = token;
-    console.log("token",res.locals)
     next();
 
 }

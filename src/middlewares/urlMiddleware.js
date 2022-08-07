@@ -1,4 +1,4 @@
-import urlSchema from "../schemas/urlSchema";
+import urlSchema from "../schemas/urlSchema.js";
 
 export function urlValidation(req, res, next){
     const url = req.body

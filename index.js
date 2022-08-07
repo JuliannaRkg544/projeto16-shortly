@@ -3,7 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import authRouter from "./src/routes/authRoute.js"
 import urlsRouter from "./src/routes/urlsRoute.js"
-import urlsByUserRouter from "./src/routes/urlByUser.js"
+import urlsByUserRouter from "./src/routes/urlByUserRote.js"
 
 
 const server = express()

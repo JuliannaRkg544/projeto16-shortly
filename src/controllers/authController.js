@@ -32,9 +32,10 @@ export async function signin(req,res){
         return res.status(401).send("email not found")
     }
     const token = uuid();
-   if( bcrypt.compareSync(user.password, verifyUser.rows[0].password)){
-    await db.query(`INSERT INTO sessions ("userId",token) VALUES ($1, $2)`, [verifyUser.rows[0].id,token])
+   if(!(bcrypt.compareSync(user.password, verifyUser.rows[0].password))){
+    return res.status(401).send("invalid password")
    }
+   await db.query(`INSERT INTO sessions ("userId",token) VALUES ($1, $2)`, [verifyUser.rows[0].id,token])
    res.status(200).send(token)
     
   } catch (error) {

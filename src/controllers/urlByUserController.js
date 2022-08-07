@@ -31,7 +31,7 @@ export async function getUrlByUsers(req, res){
 
 export async function getTopVisitedUrls(req,res){
     try {
-        const result = await db.query(
+        const getTopVisitedUrls = await db.query(
           `
           SELECT users.id, users.name, COUNT(urls.url) AS "linksCount", SUM(COALESCE(urls.visits, 0)) AS "visitCount"
           FROM users
@@ -41,9 +41,8 @@ export async function getTopVisitedUrls(req,res){
           LIMIT 10;
         `
         );
-        const topUsers = result.rows;
     
-        res.status(200).send(topUsers);
+        res.status(200).send(getTopVisitedUrls.rows);
         
       } catch (error) {
         console.log(error)

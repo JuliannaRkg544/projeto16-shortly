@@ -5,7 +5,6 @@ export async function postUrl(req,res){
     const {url} = req.body
     const {token} = res.locals
     const shorturl = nanoid()
-    console.log("user id do locals ", res.locals)
     try {
         const session = await db.query(`SELECT "userId" FROM sessions WHERE token = $1`, [token])
         if(session.rowCount===0){
