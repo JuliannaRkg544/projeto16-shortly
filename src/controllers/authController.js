@@ -36,7 +36,10 @@ export async function signin(req,res){
     return res.status(401).send("invalid password")
    }
    await db.query(`INSERT INTO sessions ("userId",token) VALUES ($1, $2)`, [verifyUser.rows[0].id,token])
-   res.status(200).send(token)
+   const userInfo = {token,
+    name: verifyUser.rows[0].name
+  }
+   res.status(200).send(userInfo)
     
   } catch (error) {
     console.log(error)
