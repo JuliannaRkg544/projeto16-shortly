@@ -17,7 +17,7 @@ export async function getUrlByUsers(req, res){
          
          }
         const urlsByUser = {
-             id: user.rows[0].id,
+             userid: user.rows[0].id,
              name: user.rows[0].name, 
              visitCount,
              shortenedUrls: urls.rows
